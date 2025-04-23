@@ -119,6 +119,6 @@ df['rank-title'] = ranks
 # verify the format of this column
 pattern = r"^\d+(\.\d+)?K?\+\sSold Recently$"
 
-for prop in df['selling-proposition']:
-    if not re.match(pattern, prop) and prop != '':
-        # print(prop)
+# for prop in df['selling-proposition']:
+#     if not re.match(pattern, prop) and prop != '':
+#         # print(prop)
