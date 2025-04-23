@@ -21,3 +21,6 @@ df = pd.concat(df_list, ignore_index=True)
 
 # print(df.head())
 # print(df.columns)
+# print(df.shape)
+# print(df.info())
+# print(df.describe())
