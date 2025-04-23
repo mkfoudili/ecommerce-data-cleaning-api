@@ -58,5 +58,21 @@ df['color-count'] = df['color-count'].fillna(0)
 # 06- selling proposition
 df['selling_proposition'] = df['selling_proposition'].fillna(0)
 
+# 07- product title
+df['goods-title-link--jump'] = df['goods-title-link--jump'].fillna('')
+df['goods-title-link'] = df['goods-title-link'].fillna('')
+
+# handeling empty columns
+df['goods-title'] = df['goods-title-link']
+df[df['goods-title'] == '' 'goods-title'] = df['goods-title-link--jump']
+
+# drop unnecessary columns (duplicates, irrelevent to the analysis)
+df = df.drop('goods-title-link--jump', axis=1)
+df = df.drop('goods-title-link--jump href', axis=1)
+df = df.drop('goods-title-link', axis=1)
+df = df.drop('blackfridaybelts-bg src', axis=1)
+df = df.drop('blackfridaybelts-content', axis=1)
+df = df.drop('product-locatelabels-img src', axis=1)
+
 # print data after handeling null values
 print(df.isnull().sum())
