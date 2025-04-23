@@ -42,26 +42,27 @@ df = pd.concat(df_list, ignore_index=True)
 # print((total_missing/total_cells) * 100)
 
 # handeling missing values
-# 01- discount
-df['discount'] = df['discount'].fillna(0)
-
-# 02- price
+# 01- price
 mod = df.groupby('category')['price'].agg(lambda x: x.mode().iloc[0])
 df['price'] = df['price'].fillna(df['category'].map(mod))
 
-# 03- rank title / rank sub
-df['rank-title'] = df['rank-title'].fillna('')
+# 02- rank title / rank sub
+df['rank-title'] = df['rank-title'].fillna('#0 Best Seller')
 df['rank-sub'] = df['rank-sub'].fillna('')
 
-# 04- product color
+# 03- product color
 df['color-count'] = df['color-count'].fillna(0)
 
-# 06- selling proposition
+# 04- selling proposition
 df['selling_proposition'] = df['selling_proposition'].fillna('')
 
-# 07- product title
+# 05- product title
 df['goods-title-link--jump'] = df['goods-title-link--jump'].fillna('')
 df['goods-title-link'] = df['goods-title-link'].fillna('')
+
+# 06- discount
+df['discount'] = df['discount'].fillna('-0%')
+
 
 # handeling empty columns
 df['goods-title'] = df['goods-title-link']
@@ -91,10 +92,11 @@ df['selling-proposition'] = df['selling-proposition'].str.title()
 df['rank-title'] = df['rank-title'].str.title()
 df['rank-sub'] = df['rank-sub'].str.title()
 
+
 # 03- trim white spaces
 for column in df.columns:
     if df[column].dtype == object:
-        df[column] = df[column].str.split().str.join(' ')
+        df[column] = df[column].str.strip()
 
 # 04- trating inconsistent data entries
 # use value counts on each column to find inconsistencies
@@ -110,15 +112,64 @@ for column in df.columns:
 
 ranks = []
 for rank in df['rank-title']:
-    if 'Sellers' in rank:
-        rank = rank.replace('Sellers','Seller')    
+    if rank:
+        if 'Sellers' in rank:
+            rank = rank.replace('Sellers','Seller')    
     ranks.append(rank)
 
 df['rank-title'] = ranks
 
-# verify the format of this column
-pattern = r"^\d+(\.\d+)?K?\+\sSold Recently$"
 
-# for prop in df['selling-proposition']:
-#     if not re.match(pattern, prop) and prop != '':
-#         # print(prop)
+# normalization
+# 01- change the price to a numeric value
+# verify the format of a price
+
+pattern = r"^\$\d+(\.\d+)?$"
+price_list = []
+for price in df['price']:
+    if not re.match(pattern, price):
+        price = price.replace(',','')
+    price_list.append(price)
+
+df['price'] = price_list
+df['price'] = df['price'].str.replace('$', '').astype(float)
+
+# 02- change the discount to a numeric value
+# verify the format of discount
+
+pattern = r"^\-\d+(\.\d+)?\%$"
+for discount in df['discount']:
+     if not re.match(pattern, discount):
+        print(discount)
+
+df['discount'] = df['discount'].replace('%', '', regex=True).replace('-', '', regex=True).astype(int)
+
+# 03- change the rank title to a numeric value
+# verify the format of rank title
+pattern = r"^\#\d+\sBest Seller$"
+for rank in df['rank-title']:
+     if not re.match(pattern, rank) and rank != '':
+        print(rank)
+
+df['rank-title'] = df['rank-title'].replace('#', '', regex=True).replace(r' Best Seller[s]?', '', regex=True).astype(int)
+
+# 04- change the selling proposition to a numeric value
+# verify the format of selling proposition
+pattern = r"^\d+(\.\d+)?K?\+\sSold Recently$"
+for prop in df['selling-proposition']:
+     if not re.match(pattern, prop) and prop != '':
+        print(prop)
+
+df['selling-proposition'] = df['selling-proposition'].replace(r'\+\sSold Recently', '', regex=True)
+prop_list =[]
+for prop in df['selling-proposition']:
+    if 'K' in prop:
+        prop = prop.split('K')[0]
+        if '.' in prop :
+            prop = prop.replace('.','')
+            prop = prop +'00'
+        else:
+            prop = prop +'000'
+    prop_list.append(prop)
+
+df['selling-proposition'] = prop_list
