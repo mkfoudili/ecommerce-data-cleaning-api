@@ -173,7 +173,27 @@ for prop in df['selling-proposition']:
     prop_list.append(prop)
 
 df['selling-proposition'] = prop_list
+df['selling-proposition'] = df['selling-proposition'].replace('','0').astype(float)
 
 # de duplication
 df = df.drop_duplicates()
 df = df.drop_duplicates(subset=['goods-title', 'price'])
+
+# validating and asserting rules
+# add a prooduct id
+df = df.reset_index(drop=True)
+df['goods-id'] = df.index
+
+# asserts
+assert df['goods-id'].is_unique
+assert df['price'].ge(0).all()
+assert df['selling-proposition'].ge(0).all()
+assert df['color-count'].ge(0).all()
+assert df['discount'].between(0, 100).all()
+assert df['rank-title'].between(0, 10).all()
+
+# reordering columns
+df = df[['goods-id', 'goods-title','category' ,'price','discount','color-count','rank-title','selling-proposition']]
+
+
+print(df)
