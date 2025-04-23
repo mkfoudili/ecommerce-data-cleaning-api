@@ -175,8 +175,5 @@ for prop in df['selling-proposition']:
 df['selling-proposition'] = prop_list
 
 # de duplication
-print(df.info())
 df = df.drop_duplicates()
-print(df.info())
 df = df.drop_duplicates(subset=['goods-title', 'price'])
-print(df.info())
