@@ -1,6 +1,5 @@
 # importing libraries
 import pandas as pd
-import numpy as np
 import re
 import os
 
@@ -184,7 +183,7 @@ df = df.drop_duplicates(subset=['goods-title', 'price'])
 # validating and asserting rules
 # add a prooduct id
 df = df.reset_index(drop=True)
-df['goods-id'] = df.index
+df['goods-id'] = df.index +1
 
 # asserts
 assert df['goods-id'].is_unique
