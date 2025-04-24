@@ -110,6 +110,8 @@ for column in df.columns:
 # print(df['rank-title'].value_counts())
 # print(df['selling-proposition'].value_counts())
 
+df['goods-title'] = df['goods-title'].str.replace('"', '', regex=False)
+
 ranks = []
 for rank in df['rank-title']:
     if rank:
@@ -193,7 +195,6 @@ assert df['discount'].between(0, 100).all()
 assert df['rank-title'].between(0, 10).all()
 
 # reordering columns
-df = df[['goods-id', 'goods-title','category' ,'price','discount','color-count','rank-title','selling-proposition']]
+df = df[['goods-id', 'goods-title','category' ,'price','discount','color-count','rank-title','rank-sub','selling-proposition']]
 
-
-print(df)
+df.to_csv('./output/us-shein-clean-products.csv', index=False)
