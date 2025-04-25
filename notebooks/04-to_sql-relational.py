@@ -1,5 +1,5 @@
 import pandas as pd
-from sqlalchemy import create_engine, Table, Column, Integer, String, Float, ForeignKey, MetaData
+from sqlalchemy import create_engine, Table, Column, Integer, Float, ForeignKey, MetaData, Text
 
 # option : 02 :
 # creating a tables with proper constraints / primary / stranger keys
@@ -15,17 +15,17 @@ metadata = MetaData()
 
 categories = Table('categories', metadata,
     Column('category-id', Integer, primary_key=True),
-    Column('category', String)
+    Column('category', Text)
 )
 
 goods = Table('goods', metadata,
     Column('goods-id', Integer, primary_key=True),
-    Column('goods-title', String),
+    Column('goods-title', Text),
     Column('price', Float),
     Column('discount', Integer),
     Column('color-count', Float),
     Column('rank-title', Integer),
-    Column('rank-sub', String),
+    Column('rank-sub', Text),
     Column('selling-proposition', Float),
     Column('category-id', Integer, ForeignKey('categories.category-id'))
 )
