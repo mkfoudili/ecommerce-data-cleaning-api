@@ -1,6 +1,9 @@
 import pandas as pd
 from sqlalchemy import create_engine
 
+# option : 01 :
+# creating a simple table schema using mysql alchemy (no primary / foreign keys / no constraints)
+
 engine = create_engine('mysql+pymysql://root:root@localhost:3306/us_shein_products')
 
 goods_file = './output/us-shein-goods.csv'
