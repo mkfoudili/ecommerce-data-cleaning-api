@@ -110,6 +110,7 @@ for column in df.columns:
 # print(df['selling-proposition'].value_counts())
 
 df['goods-title'] = df['goods-title'].str.replace('"', '', regex=False)
+df['goods-title'] = df['goods-title'].str.replace(',', '', regex=False)
 
 ranks = []
 for rank in df['rank-title']:
