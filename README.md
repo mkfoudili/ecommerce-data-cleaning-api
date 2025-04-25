@@ -38,7 +38,7 @@ A Flask web API was developed to expose the data stored in MySQL. The API allows
 ## ⚙️ Installation  
 ### Clone the repository:  
 ```bash
-git clone https://github.com/mkfoudili/SheinCleanData.git cd <repo_folder>  
+git clone https://github.com/mkfoudili/ecommerce-data-cleaning-api cd <repo_folder>  
 ```    
 ### Install dependencies:  
 ```python
