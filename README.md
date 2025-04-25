@@ -1,11 +1,11 @@
-#🛍️ E-Commerce Product Data API  
+# 🛍️ **E-Commerce Product Data API**  
   
-##🌐 Project Overview  
+## 🌐 Project Overview  
 This project involves automatically cleaning an e-commerce products dataset using pandas python, normalizing it into a MySQL database, and exposing the data through a Flask-based web API.
 The dataset consists of product information from SheIn website, spanning +80,000 products and +20 CSV files. This project demonstrates data cleaning, wrangling, and API development skills,
 useful for anyone looking to refine their data analysis or back-end development expertise.  
   
-##🛠️ Technologies Used  
+## 🛠️ Technologies Used  
 - **Python**: Primary programming language for data cleaning and API development.  
 - **Pandas**: Used for cleaning and wrangling the dataset.  
 - **MySQL**: Used for storing and querying the cleaned and normalized data.  
@@ -13,7 +13,7 @@ useful for anyone looking to refine their data analysis or back-end development 
 - **SQLAlchemy**: ORM used for interacting with the MySQL database.  
 - **Flasgger**: Used to generate Swagger documentation for the API.  
   
-##📂 Dataset  
+## 📂 Dataset  
 The dataset contains product details like:  
 - **Product ID**  
 - **Product Title**  
@@ -23,7 +23,7 @@ The dataset contains product details like:
 - **Rank**  
 - **Category ID**  
   
-##🧹 Data Cleaning
+## 🧹 Data Cleaning
 The raw dataset included inconsistencies, missing values, and formatting issues. Using Pandas, the data was cleaned and prepared for further analysis. This process involved:  
 - **Merging data sets**  
 - **Rebuilding missing data**  
@@ -32,23 +32,38 @@ The raw dataset included inconsistencies, missing values, and formatting issues.
 - **De-Duplication**  
 - **Verification and enrichment**  
 
-##🌍 Web API  
+## 🌍 Web API  
 A Flask web API was developed to expose the data stored in MySQL. The API allows you to interact with the data via multiple endpoints  
   
-##⚙️ Installation  
-###Clone the repository:  
+## ⚙️ Installation  
+### Clone the repository:  
 ```bash
 git clone https://github.com/mkfoudili/SheinCleanData.git cd <repo_folder>  
 ```    
-###Install dependencies:  
+### Install dependencies:  
 ```python
 pip install -r requirements.txt  
 ```  
-###Set up the database:  
+### Set up the database:  
 Ensure you have MySQL installed and running. Configure the database connection in your db.py file and create the necessary tables by running the Flask app.  
   
-###Run the Flask app:  
+### Run the Flask app:  
 ```python
 python app.py
 ```
-The Flask application should now be running locally at http://127.0.0.1:5000.
+The Flask application should now be running locally at http://127.0.0.1:5000.  
+
+    
+## 🤝 Contributions:  
+Les contributions sont les bienvenues ! Si tu veux :  
+  1. corriger un bug  
+  2. proposer un nouvel algorithme  
+  3. améliorer les documents pédagogiques
+n'hésite pas à **ouvrir une issue** ou à faire une **pull request**.  
+    
+## 📜 Licence  
+Ce projet est sous licence MIT  
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)  
+  
+## 👨‍💻 Auteur:  
+Développé avec ❤️ par [Khadidja Foudili](https://github.com/mkfoudili)  
