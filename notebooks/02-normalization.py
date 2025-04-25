@@ -17,13 +17,13 @@ goods_df = pd.read_csv(file)
 category_df = goods_df[['category']].drop_duplicates()
 
 category_df = category_df.reset_index(drop=True)
-category_df['category_id'] = category_df.index + 1
+category_df['category-id'] = category_df.index + 1
 
 # merges the two dfs adding the category id next to its correspondant category
-df = goods_df.merge(category_df, on='category')
+goods_df = goods_df.merge(category_df, on='category')
 
 # delete the category name and keep it's id
-df = df.drop(columns= 'category')
+goods_df = goods_df.drop(columns= 'category')
 
 # save to clean csvs
 
