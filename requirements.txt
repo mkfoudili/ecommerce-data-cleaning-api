@@ -6,3 +6,4 @@ Flask-SQLAlchemy==3.1.1
 Flask-Marshmallow==0.15.0
 marshmallow-sqlalchemy==0.29.0
 python-dotenv==1.0.1
+Flasgger==0.9.5
